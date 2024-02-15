@@ -1,8 +1,9 @@
 const express = require('express');
 const path = require('path');
-const exphbs = require('express-handlebars');
-const session = require('express-session');
+const handlebars = require('express-handlebars');
+// const session = require('express-session');
 const sequelize = require('./config/connection');
+
 
 // Import routes
 const indexRouter = require('./controllers/index');
@@ -16,15 +17,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Set up Handlebars as the view engine
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
+app.engine('handlebars', handlebars.engine());
 
 // Set up session middleware
-app.use(session({
-    secret: 'your-secret-key',
-    resave: false,
-    saveUninitialized: false
-}));
+// app.use(session({
+//     secret: 'your-secret-key',
+//     resave: false,
+//     saveUninitialized: false
+// }));
 
 // Set up routes
 app.use('/', indexRouter);
