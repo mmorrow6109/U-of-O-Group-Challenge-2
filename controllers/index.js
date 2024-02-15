@@ -1,5 +1,3 @@
-// DOES THIS FILE NEED TO BE IN A ROUTES FOLDER?
-
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
