@@ -1,4 +1,15 @@
-const Comment = require('../models/comment');
+const { Comment } = require('../models');
 
-// Controller logic for commenting
-// Implement functionality to add comments to recipes
+const commentController = {
+    addComment: async (req, res) => {
+        try {
+            // Logic to add a comment to a recipe
+            res.send('Comment added successfully');
+        } catch (error) {
+            console.error('Error adding comment:', error);
+            res.status(500).send('Error adding comment');
+        }
+    }
+};
+
+module.exports = commentController;
