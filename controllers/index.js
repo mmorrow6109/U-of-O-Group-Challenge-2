@@ -9,4 +9,4 @@ router.get('/session', (req, res) => {
     res.json(req.session)
 })
 
-module.exports = router;z
+module.exports = router;
