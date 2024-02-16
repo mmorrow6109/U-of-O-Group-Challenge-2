@@ -4,6 +4,10 @@ const userController = require('../controllers/userController');
 const recipeController = require('../controllers/recipeController');
 const commentController = require('../controllers/commentController');
 
+
+// Home routes
+// router.get('/main', userController.);
+
 // User authentication routes
 router.get('/signup', userController.signupForm);
 router.post('/signup', userController.signup);

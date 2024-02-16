@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const handlebars = require('express-handlebars');
-// const session = require('express-session');
 const sequelize = require('./config/connection');
 
 
@@ -14,18 +13,11 @@ const app = express();
 // Set up middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static('public'));
 
 // Set up Handlebars as the view engine
 app.set('view engine', 'handlebars');
 app.engine('handlebars', handlebars.engine());
-
-// Set up session middleware
-// app.use(session({
-//     secret: 'your-secret-key',
-//     resave: false,
-//     saveUninitialized: false
-// }));
 
 // Set up routes
 app.use('/', indexRouter);
@@ -34,7 +26,7 @@ app.use('/', indexRouter);
 sequelize.sync().then(() => {
     const PORT = process.env.PORT || 3001;
     app.listen(PORT, () => {
-        console.log(`Server is running on port ${PORT}`);
+        console.log(`App is running on http://localhost:3001`);
     });
 }).catch(err => {
     console.error('Unable to connect to the database:', err);
