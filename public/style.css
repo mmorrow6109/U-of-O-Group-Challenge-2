@@ -6,9 +6,9 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: "Montserrat", sans-serif;
+    background-color: #fff5d7;
+    color: #fff5d7;
     line-height: 1.6;
 }
 
@@ -21,8 +21,8 @@ body {
 
 /* Header */
 header {
-    background-color: #3498db;
-    color: #fff;
+    background-color: #fff5d7;
+    color: #031930;
     padding: 20px 0;
     text-align: center;
 }
@@ -34,7 +34,7 @@ header h1 {
 
 /* Navigation */
 nav {
-    background-color: #2980b9;
+    background-color: #ff5e6c;
     padding: 10px 0;
 }
 
@@ -84,7 +84,7 @@ form input[type="submit"] {
 }
 
 form input[type="submit"]:hover {
-    background-color: #2980b9;
+    background-color: #164565;
 }
 
 /* Recipe Cards */
@@ -129,8 +129,24 @@ form input[type="submit"]:hover {
 
 /* Footer */
 footer {
-    background-color: #34495e;
-    color: #fff;
+    background-color: #fff5d7;
+    color: #1c0506;
     text-align: center;
     padding: 20px 0;
 }
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #ff5e6c;
+    border: 1px solid #1c0506;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+  }
+
+  .button:hover {
+    background-color: #031930;
+    cursor: pointer;
+  }
