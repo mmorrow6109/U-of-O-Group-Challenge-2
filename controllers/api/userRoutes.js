@@ -1,75 +1,105 @@
-const router = require('express').Router()
-const { User, Recipe } = require('../../models')
+const express = require("express")
+const router = express.Router()
+const { User, Recipe, Comment } = require('../../models')
+const bcrypt = require("bcrypt")
 
-router.get('/', async (req, res) => {
-    try {
-        const userData = await User.findAll({
-            include: [Recipe]
-        })
-        res.status(200).json(userData)
-    } catch (err) {
-        res.status(500).json(err)
-    }
-});
-
-router.get('/:id', (req, res) => {
-    User.findByPk(req.params.id, {
-        include: [Recipe]
-    }).then(user => {
-        const userHbsData = user.get({ plain: true });
-        res.render('user', userHbsData)
+router.get("/", (req, res) => {
+    User.findAll({
+        include: [Recipe, Comment]
     })
-});
-
-router.get('/search/:username', (req, res) => {
-    User.findOne({
-        where: { username: req.params.username },
-        include: [Recipe]
-    }).then(user => {
-        const userNameHbsData = user.get({ plain: true });
-        res.render('user', userNameHbsData)
-    })
-});
-
-router.post('/', async (req, res) => {
-    try {
-        const userData = await User.create(req.body);
-        req.session.save(() => {
-            req.session.user_id = userData.id;
-            req.session.loggedIn = true;
-            req.status(200).json(userData)
-        });
-    } catch (err) {
-        res.status(400).json(err);
-    }
-});
-
-router.post('/login', async (req, res) => {
-    try {
-        const dbUserData = await User.findOne({ where: { username: req.body.username }})
-        if (!dbUserData) {
-            res.status(400).json({ message: 'Wrong username/password' })
-            return;
-        }
-        req.session.save(() => {
-            req.session.user_id = dbUserData.id
-            req.session.loggedIn = true
-            req.session.cookie
-            res.status(200).json({ user: dbUserData, message: 'Logged in' })
+        .then(dbUsers => {
+            res.json(dbUsers)
         })
-    } catch (err) {
-        res.status(400).json(err)
-    }
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({ msg: "error occured", err })
+        })
 })
 
-router.post('/logout', (req, res) => {
-    if (req.session.loggedIn) {
-        req.session.destroy(() => {
-            res.status(204).end()
+router.get("/logout", (req, res) => {
+    req.session.destroy()
+    res.redirect('/')
+})
+
+router.get("/:id", (req, res) => {
+    User.findByPk(req.params.id, {include: [Recipe, Comment]})
+        .then(dbUser => {
+            res.json(dbUser)
         })
-    } else {
-        res.status(404).end()
-    }
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({ msg: "error occured", err })
+        })
+})
+
+// sign up
+router.post("/", (req, res) => {
+    User.create(req.body, {individualHooks: true})
+        .then(newUser => {
+            req.session.user = {
+                id:newUser.id,
+                username:newUser.username
+            }
+            res.json
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({ msg: "error occured", err })
+        })
+})
+
+// login
+router.post("/login", (req, res) => {
+    User.findOne({
+        where: {
+            username:req.body.username
+        }
+    }).then(foundUser => {
+        if(!foundUser) {
+            return res.status(400).json({ msg:"Wrong login"})
+        }
+        if(bcrypt.compareSync(req.body.password,foundUser.password)){
+            req.session.user = {
+                id:foundUser.id,
+                username: foundUser.username
+            }
+            return res.json(foundUser)
+        } else {
+            return res.status(400).json({ msg: "Wrong login", err })
+        }
+    }).catch(err => {
+        console.log(err)
+        res.status(500).json({ msg: "error occured", err })
+    })
+})
+
+router.put("/:id", (req, res) => {
+    user.update(req.body, {
+        where: {
+            id: req.params.id
+        },
+        individualHooks: true
+    }).then(updatedUser => {
+        res.json(updatedUser)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json({ msg: "error occured", err})
+    })
+})
+
+router.delete("/:id", (req, res) => {
+    User.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(dbUser => {
+        res.json(delUser)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json({ msg: "error occured", err})
+    })
 })
 
 module.exports = router
