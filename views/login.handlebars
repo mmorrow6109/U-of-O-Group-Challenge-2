@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/public/style.css">
 </head>
 <body>
     <header>
-        <h1>Login</h1>
+        <h1>Welcome to OUR APP NAME</h1>
+        <p>Discover, savor, repeat</p>    
     </header>
-
+    
     <div class="container">
+        <h2>Login:</h2>
         <form action="/login" method="POST">
             <div class="form-group">
                 <label for="username">Username:</label>
@@ -21,7 +26,8 @@
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <button type="submit">Login</button>
+            <button class="button" type="submit">Login</button> <p> or</p>
+            <a href="signup.html" class="button">Sign Up!</a>
         </form>
     </div>
 
@@ -30,5 +36,3 @@
     </footer>
 
     <script src="/public/javascript.js" script>
-</body>
-</html>
