@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,20 +11,36 @@
     </head>
 <body>
     <header>
-        <h1>HOMEPAGE</h1>
-        
+        <h1>My Recipes</h1>
         <nav>
             <ul>
+                <li><a href="main.html">Home</a></li>
                 <li><a href="profile.html">Profile</a></li>
-                <li><a href="myRecipes.html">My Recipes</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="signup.html">Sign Up</a></li>
+                <!-- <li><a href="myRecipes.html">My Recipes</a></li> -->
                 <!-- Add more navigation links as needed -->
             </ul>
         </nav>
     </header>
-    {{{body}}}
-</body>
+
+    <main>
+        <div class="recipe-container">
+            {{#each recipes}}
+            <div class="recipe">
+                <h2>{{this.title}}</h2>
+                <p class="blurb">{{this.blurb}}</p>
+                <div class="details">
+                    <h3>Details</h3>
+                    <!-- Add more details like ingredients, instructions, etc. -->
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Recipe App</p>
+    </footer>
 
 <script src="/public/javascript.js" script></script>
+</body>
 </html>
