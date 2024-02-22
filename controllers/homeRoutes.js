@@ -4,21 +4,21 @@ const { User, Recipe, Comment } = require('../models');
 
 router.get('/', async (req, res) => {
     Recipe.findAll({include: [User]}).then(blogs => {
-        const hbsRecipes = recipe.map(recipe => recipe.get({plain:true}))
-        const loggedIn = req.session.user?true:false;
-        res.render('home', {recipes:hbsRecipes, loggedIn, username:req.session.user?.username})
+        const hbsRecipes = blogs.map(recipe => recipe.get({plain:true}))
+        const loggedIn = req.session?.user ? true:false;
+        res.render('home', {recipes:hbsRecipes, loggedIn, username:req.session?.user?.username})
     })
 })
-
+// ex. localhost:3001/login
 router.get("/login", (req, res) => {
-    if (req.session.user) {
+    if (req.session?.user) {
         return res.redirect('/profile')
     }
-    res.render('login')
+    res.render('login') // this is pointing to the handlebars file
 })
 
 router.get("/signup", (req, res) => {
-    res.redner("signup")
+    res.render("signup")
 })
 
 router.get("/profile", (req, res) => {
