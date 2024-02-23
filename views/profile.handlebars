@@ -5,10 +5,14 @@
             <h1>User Profile</h1>
             <div class="profile">
                 <img src="profile-picture.jpg" alt="Profile Picture">
-                <h2>John Doe</h2>
-                <p>Email: johndoe@example.com</p>
+                <h2>{{{User}}}</h2>
+                <p>Email: {{{user_email}}}</p>
                 <p>Location: New York, USA</p>
-                <p>Interests: Cooking, Photography, Travel</p>
+                <form action="/update-profile" method="POST">
+                    <label for="interests">Interests:</label><br>
+                    <input type="text" id="interests" name="interests" placeholder="Enter your interests"><br>
+                    <input type="submit" value="Save">
+                </form>
             </div>
         </div>
     </body>
