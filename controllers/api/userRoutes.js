@@ -93,7 +93,7 @@ router.delete("/:id", (req, res) => {
         where: {
             id: req.params.id
         }
-    }).then(dbUser => { //does this need to be delUser?
+    }).then(delUser => { //does this need to be delUser?
         res.json(delUser)
     })
     .catch(err => {
