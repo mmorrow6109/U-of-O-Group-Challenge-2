@@ -1,24 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-</head>
 <body>
     <header>
         <h1>Sign Up</h1>
     </header>
 
     <div class="container">
-        <form action="/signup" method="POST">
+        <form action="/views/signup.handlebars" method="POST">
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input type="text" id="email" name="email" required>
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
@@ -28,13 +21,10 @@
                 <label for="confirm-password">Confirm Password:</label>
                 <input type="password" id="confirm-password" name="confirm-password" required>
             </div>
-            <button type="submit">Sign Up</button>
+            <button class="button" type="submit">Sign Up</button>
         </form>
     </div>
 
     <footer>
         <p>© 2024 Recipe App</p>
     </footer>
-<script src="/public/javascript.js" script></script>
-</body>
-</html>

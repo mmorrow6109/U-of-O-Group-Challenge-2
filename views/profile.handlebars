@@ -1,48 +1,20 @@
-<!-- Display saved recipes and comments -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-    <link rel="stylesheet" href="/public/style.css">
-</head>
-<body>
-    <header>
-        <h1>Welcome to Your Profile</h1>
-    </header>
-
-    <div class="container">
-        <section class="saved-recipes">
-            <h2>Your Saved Recipes</h2>
-            <div class="recipe-cards">
-                {{#each recipes}}
-                <div class="recipe-card">
-                    <h3>{{this.title}}</h3>
-                    <p>{{this.description}}</p>
-                    <!-- Add more recipe details as needed -->
-                </div>
-                {{/each}}
+    <body>
+        // Add the header and navigation links here
+        
+        <div class="container">
+            <h1>User Profile</h1>
+            <div class="profile">
+                <img src="profile-picture.jpg" alt="Profile Picture">
+                <h2>John Doe</h2>
+                <p>Email: johndoe@example.com</p>
+                <p>Location: New York, USA</p>
+                <p>Interests: Cooking, Photography, Travel</p>
             </div>
-        </section>
-
-        <section class="comments">
-            <h2>Your Comments</h2>
-            <div class="comment-list">
-                {{#each comments}}
-                <div class="comment">
-                    <p>{{this.content}}</p>
-                    <!-- Add more comment details as needed -->
-                </div>
-                {{/each}}
-            </div>
-        </section>
-    </div>
+        </div>
+    </body>
 
     <footer>
         <p>© 2024 Recipe App</p>
     </footer>
-
-    <script src="/public/javascript.js" script></script>
-</body>
-</html>
+    
+    </html>
