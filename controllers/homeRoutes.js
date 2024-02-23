@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const withAuth = require('../utils/auth');
 const { User, Recipe, Comment } = require('../models');
 
 router.get('/', async (req, res) => {
@@ -21,18 +22,15 @@ router.get("/signup", (req, res) => {
     res.render("signup")
 })
 
-router.get("/profile", (req, res) => {
-    if(!req.session.user) {
-        return res.redirect("/login")
-    }
-    User.findByPk(req.session.user.id, {
-        include: [Recipe, Comment]
-    }).then(userData => {
-        const hbsData = userData.get({plain:true})
-        hbsData.loggedIn = req.session.user?true:false
-        res.render("profile", hbsData)
-    })
-})
+// // this takes us to the default profile page with no authentication required
+// router.get("/profile", (req, res) => {
+//     res.render("profile")
+// })
+
+// this takes us to the profile page with authentication required
+router.get("/profile", withAuth, (req, res) => {
+    res.render("profile"); // Render user-specific profile.handlebars
+});
 
 router.get("/recipe/:id", (req, res) => {
     if(!req.session.user) {
