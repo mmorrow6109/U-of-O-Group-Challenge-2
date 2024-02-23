@@ -40,7 +40,7 @@ router.post("/", (req, res) => {
                 id:newUser.id,
                 username:newUser.username
             }
-            res.json
+            res.json(newUser)
         })
         .catch(err => {
             console.log(err)
