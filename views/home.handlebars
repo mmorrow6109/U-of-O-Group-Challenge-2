@@ -1,8 +1,50 @@
-<div>
-    <h1>Welcome to OUR APP NAME</h1>
-    <p>Discover, savor, repeat</p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes from Spoonacular API</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+    <script src="/public/js/javascript.js" defer></script>
+</head>
+<body>
+    <div>
+        <h1>Welcome to OUR APP NAME</h1>
+        <p>Discover, savor, repeat</p>
+    </div>
 
-<footer>
+    <h1>Find Recipes</h1>
+    <form id="search-form">
+        <label for="search-input">Enter ingredients:</label>
+        <input type="text" id="search-input" name="search-input">
+        <button type="submit">Search</button>
+    </form>
+
+    <h2>Recipes:</h2>
+    <ul id="recipe-list"></ul>
+
+    <!-- Handlebars template -->
+    <script id="recipe-template" type="text/x-handlebars-template">
+        {{#each recipes}}
+        <li>
+            <a href="{{sourceUrl}}" target="_blank">{{title}}</a>
+        </li>
+        {{/each}}
+    </script>
+
+    <footer>
         <p>© 2024 Recipe App</p>
-</footer>
+    </footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
