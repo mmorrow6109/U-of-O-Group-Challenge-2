@@ -5,9 +5,10 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0 20px;
+    color: #333;
 }
 
 h1 {
@@ -30,10 +31,11 @@ label {
 }
 
 input[type="text"] {
-    width: calc(100% - 80px);
+    width: 100%;
     padding: 10px;
-    border-radius: 5px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 button[type="submit"] {
