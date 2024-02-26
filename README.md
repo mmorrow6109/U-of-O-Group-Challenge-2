@@ -26,6 +26,6 @@ For any questions, please contact [mmorrow6109](https://github.com/mmorrow6109) 
 https://github.com/mmorrow6109/U-of-O-Group-Challenge-2
 
 ## Screenshots
-![signup](public\img\signup.png)
-![login](public\img\login.png)
-![search](public\img\search.png)
+![signup](/public/img/signup.png)
+![login](/public/img/login.png)
+![search](/public/img/search.png)
