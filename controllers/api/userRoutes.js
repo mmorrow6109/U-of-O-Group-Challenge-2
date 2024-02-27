@@ -51,29 +51,51 @@ router.post("/", (req, res) => {
 })
 
 // login
-router.post("/login", (req, res) => {
-    User.findOne({
+router.post("/login", async (req, res) => {
+    try {
+        const userData = await User.findOne({ where: { username: req.body.username } });
+        if (!userData) {
+          res
+            .status(400)
+            .json({ message: "Incorrect username or password, please try again" });
+          return;
+        }
+        const validPassword = await userData.checkPassword(req.body.password);
+        if (!validPassword) {
+          res
+            .status(400)
+            .json({ message: "Incorrect username or password, please try again" });
+          return;
+        }
+        req.session.save(() => {
+          req.session.user_id = userData.id;
+          req.session.username = userData.username;
+          req.session.logged_in = true;
+
+          // Redirect to "/profile" after successful login
+          res.redirect("/profile");
+    
+          res.json({ user: userData, message: "You are now logged in!" });
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ msg: "error occured", err });
+    }
+});
+
+router.put("/:id", (req, res) => {
+    user.update(req.body, {
         where: {
-            username:req.body.username
-        }
-    }).then(foundUser => {
-        if(!foundUser) {
-            return res.status(400).json({ msg:"Wrong login"})
-        }
-        if(bcrypt.compareSync(req.body.password,foundUser.password)){
-            req.session.save(() => {
-                req.session.user_id = newUser.id;
-                req.session.username = newUser.username;
-                req.session.logged_in = true;
-          
-                res.status(200).json(newUser);
-              });
-            }
+            id: req.params.id
+        },
+        individualHooks: true
+    }).then(updatedUser => {
+        res.json(updatedUser);
     }).catch(err => {
-        console.log(err)
-        res.status(500).json({ msg: "error occured", err })
-    })
-})
+        console.log(err);
+        res.status(500).json({ msg: "error occured", err });
+    });
+});
 
 router.put("/:id", (req, res) => {
     user.update(req.body, {

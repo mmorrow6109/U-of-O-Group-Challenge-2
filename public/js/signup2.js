@@ -12,7 +12,7 @@ async function signupFormHandler(event) {
     if (username && email && password) {
       // Make a POST request to the users API endpoint
       const response = await fetch('/api/users', {
-        method: 'post', // Specify the request method
+        method: 'POST', // Specify the request method
         body: JSON.stringify({
           username, // Include these inputs in the request body
           email, 
@@ -35,4 +35,4 @@ async function signupFormHandler(event) {
     }
   }
   
-  document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
+  document.querySelector('#signup').addEventListener('submit', signupFormHandler);

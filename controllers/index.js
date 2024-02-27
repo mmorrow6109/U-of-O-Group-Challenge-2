@@ -5,10 +5,13 @@ const recipeRoutes = require('./api/recipeRoutes')
 const commentRoutes = require('./api/commentRoutes')
 const homeRoutes = require("./homeRoutes")
 
+
 router.use("/api/users", userRoutes)
 router.use("/api/recipe", recipeRoutes)
 router.use("/api/comments", commentRoutes)
 router.use("/", homeRoutes)
+// router.use("/login", userRoutes)
+// router.use("/profile", userRoutes)
 
 router.get("/session", (req, res) => {
     res.json(req.session)

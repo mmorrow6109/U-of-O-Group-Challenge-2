@@ -1,11 +1,12 @@
 document.querySelector("#login").addEventListener("submit", event => {
     event.preventDefault()
     const userObj = {
-        username:document.querySelector("#loginUsername").value,
-        password:document.querySelector("#loginPassword").value,
+        username: document.querySelector("#username").value,
+        password: document.querySelector("#password").value,
     }
+    
     console.log(userObj)
-    fetch("/api/users/login", {
+    fetch("/api/login", {
         method:"POST",
         body:JSON.stringify(userObj),
         headers: {
