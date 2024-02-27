@@ -50,10 +50,10 @@ input[type="text"] {
     border-radius: 10px;
   }
 
-button[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
+  .button:hover {
+    background-color: #031930;
+    cursor: pointer;
+  }
 ul {
     list-style: none;
     padding: 0;
