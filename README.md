@@ -2,7 +2,7 @@
 # Culinary Crafters
 
 ## Description
-This application should allow the user to signup with their desired credentials, search for recipes using the Spoonable API and save them to their profile.  Upon returning to the website, they should be able to login and visit their progfile where their saved recipes are stored.  In addition to viewing them, they should be able to comment on and share the recipes with other users as well.
+This application should allow the user to signup with their desired credentials, search for recipes using the Spoonacular API and save them to their profile.  Upon returning to the website, they should be able to login and visit their progfile where their saved recipes are stored.  In addition to viewing them, they should be able to comment on and share the recipes with other users as well.
 
 ## Table of Contents
 - [Installation](#installation)
