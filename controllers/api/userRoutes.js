@@ -36,11 +36,13 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
     User.create(req.body, {individualHooks: true})
         .then(newUser => {
-            req.session.user = {
-                id:newUser.id,
-                username:newUser.username
-            }
-            res.json(newUser)
+            req.session.save(() => {
+                req.session.user_id = newUser.id;
+                req.session.username = newUser.username;
+                req.session.logged_in = true;
+          
+                res.status(200).json(newUser);
+              });
         })
         .catch(err => {
             console.log(err)
@@ -59,14 +61,14 @@ router.post("/login", (req, res) => {
             return res.status(400).json({ msg:"Wrong login"})
         }
         if(bcrypt.compareSync(req.body.password,foundUser.password)){
-            req.session.user = {
-                id:foundUser.id,
-                username: foundUser.username
+            req.session.save(() => {
+                req.session.user_id = newUser.id;
+                req.session.username = newUser.username;
+                req.session.logged_in = true;
+          
+                res.status(200).json(newUser);
+              });
             }
-            return res.json(foundUser)
-        } else {
-            return res.status(400).json({ msg: "Wrong login", err })
-        }
     }).catch(err => {
         console.log(err)
         res.status(500).json({ msg: "error occured", err })
