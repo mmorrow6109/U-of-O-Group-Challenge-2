@@ -6,7 +6,7 @@ document.querySelector("#login").addEventListener("submit", event => {
     }
     
     console.log(userObj)
-    fetch("/api/login", {
+    fetch("/api/users/login", {
         method:"POST",
         body:JSON.stringify(userObj),
         headers: {

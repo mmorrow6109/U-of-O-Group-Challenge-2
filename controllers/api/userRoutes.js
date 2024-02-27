@@ -72,8 +72,8 @@ router.post("/login", async (req, res) => {
           req.session.username = userData.username;
           req.session.logged_in = true;
 
-          // Redirect to "/profile" after successful login
-          res.redirect("/profile");
+        //   // Redirect to "/profile" after successful login
+        //   res.redirect("/profile");
     
           res.json({ user: userData, message: "You are now logged in!" });
         });
