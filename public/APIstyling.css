@@ -39,14 +39,16 @@ input[type="text"] {
     border-radius: 5px;
 }
 
-button[type="submit"] {
+.button {
+    display: inline-block;
     padding: 10px 20px;
-    background-color: #007bff;
     color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+    background-color: #ff5e6c;
+    border: 1px solid #1c0506;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+  }
 
 button[type="submit"]:hover {
     background-color: #0056b3;
