@@ -71,3 +71,8 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+.profile-picture {
+    width: 200px;
+    height: 200px;
+}

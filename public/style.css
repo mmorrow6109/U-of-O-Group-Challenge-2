@@ -150,3 +150,8 @@ footer {
     background-color: #031930;
     cursor: pointer;
   }
+
+  .profile-picture {
+    width: 200px;
+    height: 200px;
+}
