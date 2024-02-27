@@ -1,7 +1,7 @@
 const express = require('express');
-const path = require('path');
 const handlebars = require('express-handlebars');
 const sequelize = require('./config/connection');
+require('dotenv').config();
 
 
 // Import routes
